@@ -1,3 +1,4 @@
+
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import Providers from "./Providers";
 import "./globals.css";
@@ -15,9 +16,11 @@ export default function RootLayout({ children }) {
       <body
         className={`antialiased ${inter.className}`}
       >
+        
         <Providers>
         {children}
         </Providers>
+       
       </body>
     </html>
   );
