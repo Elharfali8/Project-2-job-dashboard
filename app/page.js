@@ -1,3 +1,4 @@
+'use client'
 import { Button } from '@/components/ui/button'
 import landing from '@/public/images/landing.svg'
 import Image from 'next/image'
@@ -22,7 +23,7 @@ function HomePage() {
           </Button>
         </div>
         <div className="hidden lg:grid place-items-center">
-            <Image src={landing} alt="landing" className="hidden lg:block" />
+            <Image src={landing} alt="landing" width={500} height={500} className="hidden lg:block" priority />
         </div>
       </div>
     </div>

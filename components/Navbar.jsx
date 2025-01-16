@@ -8,7 +8,10 @@ const Navbar = () => {
           <div className="container main-container flex items-center justify-between">
               <div>
               <LinksDropdown />
-            </div>
+        </div>
+        <div className='  '>
+          <h3 className='text-xl lg:text-2xl font-semibold'>Dashboard</h3>
+        </div>
           <div className=' flex items-center gap-x-4'>
               <ThemToggle />
           </div>

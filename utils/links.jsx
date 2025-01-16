@@ -1,3 +1,4 @@
+'use client'
 import { AreaChart, Layers, AppWindow } from 'lucide-react';
 
 
