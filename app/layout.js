@@ -3,6 +3,8 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import Providers from "./Providers";
 import "./globals.css";
 const inter = Inter({ subsets: ['latin'], display: 'swap' });
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export const metadata = {
@@ -17,8 +19,9 @@ export default function RootLayout({ children }) {
 
         
         <Providers>
-        {children}
+          {children}
         </Providers>
+          <ToastContainer position="top-center" />
        
       </body>
     </html>

@@ -1,18 +1,59 @@
+import { v4 as uuidv4 } from 'uuid';
+import { addDataToLocalStorage, getDataFromLocalStorage } from "@/utils/localStorage";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 
 const initialState = {
     isLoading: false,
-    jobs: [],
+    jobs: typeof window !== 'undefined' ? getDataFromLocalStorage() || [] : [],
     position: '',
     company: '',
-    city: '',
-    status: ['pending', 'interview', 'declined'],
-    mode: ['full-time', 'part-time', 'internship']
-}
+    location: '',
+    status: ['pending', 'interview', 'declined'], // options
+    selectedStatus: 'pending', // default selected
+    mode: ['full-time', 'part-time', 'internship'], // options
+    selectedMode: 'full-time', // default selected
+  };
+  
+  
 
 const jobSlice = createSlice({
     name: 'job',
-    initialState
+    initialState,
+    reducers: {
+        handleChange: (state, action) => {
+            const { name, value } = action.payload;
+            if (name === 'status') {
+              state.selectedStatus = value;
+            } else if (name === 'mode') {
+              state.selectedMode = value;
+            } else {
+              state[name] = value;
+            }
+          },
+            createJob: (state, { payload }) => {
+            const { position, company, location, status, mode } = payload;
+            const newJob = { id: uuidv4(), position, company, location, status, mode };
+            
+            // Add the new job to the jobs array
+            state.jobs = [...state.jobs, newJob];
+            
+            // Save the updated jobs array to local storage
+            addDataToLocalStorage(state.jobs);
+            
+            toast.success('Job created');
+            
+            // Clear inputs
+            state.position = '';
+            state.company = '';
+            state.location = '';
+            state.selectedStatus = 'pending'; // Reset to default
+            state.selectedMode = 'full-time'; // Reset to default
+            }
+
+      },
 })
+
+export const { handleChange, createJob } = jobSlice.actions;
 
 export default jobSlice.reducer
