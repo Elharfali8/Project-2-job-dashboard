@@ -33,7 +33,7 @@ const jobSlice = createSlice({
           },
             createJob: (state, { payload }) => {
             const { position, company, location, status, mode } = payload;
-            const newJob = { id: uuidv4(), position, company, location, status, mode };
+            const newJob = { id: uuidv4(),createdAt: new Date().toISOString(), position, company, location, status, mode };
             
             // Add the new job to the jobs array
             state.jobs = [...state.jobs, newJob];

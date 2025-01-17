@@ -9,7 +9,7 @@ const links = [
     icon: <Layers />,
   },
   {
-    href: '/jobs',
+    href: '/all-jobs',
     label: 'all jobs',
     icon: <AppWindow />,
   },

@@ -94,3 +94,22 @@
     padding-right: 0.25rem; 
   }
 }
+
+.remove-btn {
+  background-color: rgba(249, 56, 39, 0.4);
+  transition: all ease-in-out 150ms;
+}
+
+.remove-btn:hover {
+  background-color: rgba(249, 56, 39, 0.5);
+}
+
+.edit-btn {
+  background-color: rgba(119, 178, 84, 0.4);
+  transition: all ease-in-out 150ms;
+
+}
+
+.edit-btn:hover {
+  background-color: rgba(119, 178, 84, 0.5);
+}
