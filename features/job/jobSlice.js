@@ -34,26 +34,37 @@ const jobSlice = createSlice({
             createJob: (state, { payload }) => {
             const { position, company, location, status, mode } = payload;
             const newJob = { id: uuidv4(),createdAt: new Date().toISOString(), position, company, location, status, mode };
-            
-            // Add the new job to the jobs array
             state.jobs = [...state.jobs, newJob];
-            
-            // Save the updated jobs array to local storage
             addDataToLocalStorage(state.jobs);
-            
             toast.success('Job created');
-            
             // Clear inputs
             state.position = '';
             state.company = '';
             state.location = '';
             state.selectedStatus = 'pending'; // Reset to default
             state.selectedMode = 'full-time'; // Reset to default
-            }
-
+            },
+            deleteJob: (state, { payload }) => {
+              const { id } = payload;
+              // Filter out the job with the given id
+              const newJobs = state.jobs.filter((job) => job.id !== id);
+              state.jobs = newJobs;
+              // Update localStorage with the new state
+              addDataToLocalStorage(newJobs);
+              // Show success message
+              toast.success('Item removed!');
+            },
+            updateJob: (state, { payload }) => {
+              const { id, position, company, location, status, mode } = payload;
+              const index = state.jobs.findIndex((job) => job.id === id);
+              if (index !== -1) {
+                state.jobs[index] = { ...state.jobs[index], position, company, location, status, mode };
+                addDataToLocalStorage(state.jobs);
+              }
+            },
       },
 })
 
-export const { handleChange, createJob } = jobSlice.actions;
+export const { handleChange, createJob, deleteJob, updateJob } = jobSlice.actions;
 
 export default jobSlice.reducer
