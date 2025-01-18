@@ -5,9 +5,13 @@ const AllJobsContainer = ({jobs}) => {
 
   return (
       <div className='grid lg:grid-cols-2 gap-6 mt-4 lg:mt-8 w-full'>
-          {jobs?.map((item) => {
-              return <Job key={item.id} {...item} />
-          })}
+          {jobs?.length > 0 ? (
+          jobs.map((job) => (
+            <Job key={job.id} {...job} />
+          ))
+        ) : (
+          <p>No jobs found.</p>
+        )}
     </div>
   )
 }

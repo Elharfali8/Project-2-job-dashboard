@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 
 const initialState = {
     isLoading: false,
-    jobs: typeof window !== 'undefined' ? getDataFromLocalStorage() || [] : [],
+  jobs: typeof window !== 'undefined' ? getDataFromLocalStorage() || [] : [],
     position: '',
     company: '',
     location: '',

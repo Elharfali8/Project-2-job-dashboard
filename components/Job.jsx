@@ -24,7 +24,7 @@ const Job = ({ id, position, company, location, status, mode, createdAt }) => {
   };
 
   return (
-    <div className="p-4 rounded-lg bg-muted">
+    <div className="p-4 rounded-lg bg-muted shadow-md">
       <header className="flex gap-2 items-center border-b-[2px] pb-4 border-b-gray-400 pl-2">
         <div className="bg-primary w-14 h-14 grid place-items-center text-white text-2xl lg:text-4xl font-bold rounded">
           {company.charAt(0).toUpperCase()}
@@ -53,14 +53,14 @@ const Job = ({ id, position, company, location, status, mode, createdAt }) => {
       <div className="flex items-center gap-x-2 pl-2">
         <button
           type="button"
-          className="edit-btn px-[7px] py-1 rounded text-green-800"
+          className="edit-btn px-[7px] py-1 rounded text-green-800 dark:text-green-400"
           onClick={handleEdit}
         >
           Edit
         </button>
         <button
           type="button"
-          className="remove-btn px-[7px] py-1 rounded text-red-900"
+          className="remove-btn px-[7px] py-1 rounded text-red-900 dark:text-red-400"
           onClick={() => dispatch(deleteJob({ id }))}
         >
           Remove
