@@ -4,16 +4,19 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 
 const initialState = {
-    isLoading: false,
+  isLoading: false,
   jobs: typeof window !== 'undefined' ? getDataFromLocalStorage() || [] : [],
-    position: '',
-    company: '',
-    location: '',
-    status: ['pending', 'interview', 'declined'], // options
-    selectedStatus: 'pending', // default selected
-    mode: ['full-time', 'part-time', 'internship'], // options
-    selectedMode: 'full-time', // default selected
-  };
+  position: '',
+  company: '',
+  location: '',
+  status: ['pending', 'interview', 'declined'],
+  selectedStatus: 'pending',
+  mode: ['full-time', 'part-time', 'internship'],
+  selectedMode: 'full-time',
+  search: '',
+  currentPage: 1,
+  itemsPerPage: 10, // Number of items per page
+};
   
   
 
@@ -21,16 +24,18 @@ const jobSlice = createSlice({
     name: 'job',
     initialState,
     reducers: {
-        handleChange: (state, action) => {
-            const { name, value } = action.payload;
-            if (name === 'status') {
-              state.selectedStatus = value;
-            } else if (name === 'mode') {
-              state.selectedMode = value;
-            } else {
-              state[name] = value;
-            }
-          },
+      handleChange: (state, action) => {
+        const { name, value } = action.payload;
+        if (name === 'status') {
+          state.selectedStatus = value;
+        } else if (name === 'mode') {
+          state.selectedMode = value;
+        } else if (name === 'search') {
+          state.search = value; // <-- Handle search input
+        } else {
+          state[name] = value;
+        }
+      },
             createJob: (state, { payload }) => {
             const { position, company, location, status, mode } = payload;
             const newJob = { id: uuidv4(),createdAt: new Date().toISOString(), position, company, location, status, mode };
@@ -61,10 +66,13 @@ const jobSlice = createSlice({
                 state.jobs[index] = { ...state.jobs[index], position, company, location, status, mode };
                 addDataToLocalStorage(state.jobs);
               }
-            },
+      },
+      changePage: (state, action) => {
+        state.currentPage = action.payload;
+      },
       },
 })
 
-export const { handleChange, createJob, deleteJob, updateJob } = jobSlice.actions;
+export const { handleChange, createJob, deleteJob, updateJob, changePage } = jobSlice.actions;
 
 export default jobSlice.reducer
