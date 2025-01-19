@@ -17,7 +17,7 @@ function HomePage() {
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor sapiente quasi nulla delectus laudantium aut enim ducimus, non animi numquam a temporibus dolorum aperiam consectetur?
           </p>
           <Button asChild className='mt-4 w-auto' >
-            <Link href={`/add-job`} className='capitalize text-lg'>
+            <Link href={`/register`} className='capitalize text-lg'>
               get started
             </Link>
           </Button>

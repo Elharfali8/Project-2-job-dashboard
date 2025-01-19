@@ -2,10 +2,12 @@
 import Sidebar from '@/components/Sidebar'
 import Navbar from '@/components/Navbar'
 import React from 'react'
+import ProtectedRoute from '@/components/ProtectedRoute'
 
 const layout = ({children}) => {
   return (
-    <main className='grid lg:grid-cols-5'>
+    <ProtectedRoute>
+      <main className='grid lg:grid-cols-5'>
 
       <div className='hidden lg:block lg:col-span-1 lg:min-h-screen'>
         <Sidebar />
@@ -18,7 +20,8 @@ const layout = ({children}) => {
         </div>
       </div>
 
-    </main>
+      </main>
+    </ProtectedRoute>
   )
 }
 
