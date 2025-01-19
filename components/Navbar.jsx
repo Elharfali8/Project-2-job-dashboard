@@ -1,6 +1,7 @@
 import React from 'react'
 import LinksDropdown from './LinksDropDown'
 import { ThemToggle } from './ThemeToggle'
+import { Profile } from './Profile'
 
 const Navbar = () => {
   return (
@@ -13,7 +14,8 @@ const Navbar = () => {
           <h3 className='text-xl lg:text-2xl font-semibold'>Dashboard</h3>
         </div>
           <div className=' flex items-center gap-x-4'>
-              <ThemToggle />
+          <Profile />
+          <ThemToggle />
           </div>
           </div>
     </nav>
